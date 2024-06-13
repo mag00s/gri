@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 1em;
+      background-color: antiquewhite;
+    }
+    
+  </style>
+  <title>VERIFICA DNI</title>
+</head>
+
+<body>
+  <div id="container">
+    <h1>Verificar la validez del dni</h1>
+      <label for="DNI">Indica el DNI con la letra: </label>
+      <input id="DNI" type="text" value="3456234J">
+    </p>
+    <p><button type="button" onclick="verificarDNI()">VERIFICAR</button></p>
+    <p id="RESPUESTA"></p>
+  </div>
+
+  <script>
+    function verificarDNI() {
+      const LETRAS_DNI = 'TRWAGMYFPDXBNJZSQVHLCKE';
+      let dniCompleto = document.getElementById('DNI').value;
+
+      let numeroDni = parseInt(dniCompleto.substring(0, dniCompleto.length-1));
+      console.log('numeroDni', numeroDni, typeof numeroDni);
+      
+      let letraDni = dniCompleto.charAt(dniCompleto.length-1).toUpperCase();
+      console.log('letraDni', letraDni, typeof letraDni);
+      
+      let resto = numeroDni % 23;
+      let letraValida = LETRAS_DNI.charAt(resto);
+      console.log('letraValida', letraValida, typeof letraValida);
+
+      if (letraDni === letraValida) {
+        document.getElementById('RESPUESTA').innerHTML = "El DNI es correcto";
+      } else {
+        document.getElementById('RESPUESTA').innerHTML = "La letra del DNI es invalida";
+      }
+    }
+  </script>
+</body>
+
+</html>
